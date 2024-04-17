@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productivity Prediction</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(to right, #6441a5, #2a0845);
+        }
+
+        .formbold-main-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 48px;
+        }
+
+        .formbold-form-wrapper {
+            margin: 0 auto;
+            max-width: 570px;
+            width: 100%;
+            background: white;
+            padding: 40px;
+            border-radius: 45px;
+        }
+
+        .formbold-input-group {
+            margin-bottom: 18px;
+        }
+
+        .formbold-form-select {
+            width: 100%;
+            padding: 12px 22px;
+            border-radius: 5px;
+            border: 1px solid #dde3ec;
+            background: #ffffff;
+            font-size: 16px;
+            color: #536387;
+            outline: none;
+            resize: none;
+        }
+
+        .formbold-input-radio-wrapper {
+            margin-bottom: 25px;
+        }
+
+        .formbold-radio-flex {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .formbold-radio-label {
+            font-size: 14px;
+            line-height: 24px;
+            color: #07074d;
+            position: relative;
+            padding-left: 25px;
+            cursor: pointer;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        .formbold-input-radio {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .formbold-radio-checkmark {
+            position: absolute;
+            top: -1px;
+            left: 0;
+            height: 18px;
+            width: 18px;
+            background-color: #ffffff;
+            border: 1px solid #dde3ec;
+            border-radius: 50%;
+        }
+
+        .formbold-radio-label .formbold-input-radio:checked~.formbold-radio-checkmark {
+            background-color: #6a64f1;
+        }
+
+        .formbold-radio-checkmark:after {
+            content: '';
+            position: absolute;
+            display: none;
+        }
+
+        .formbold-radio-label .formbold-input-radio:checked~.formbold-radio-checkmark:after {
+            display: block;
+        }
+
+        .formbold-radio-label .formbold-radio-checkmark:after {
+            top: 50%;
+            left: 50%;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #ffffff;
+            transform: translate(-50%, -50%);
+        }
+
+        .formbold-form-input {
+            width: 100%;
+            padding: 13px 22px;
+            border-radius: 5px;
+            border: 1px solid #dde3ec;
+            background: #ffffff;
+            font-weight: 500;
+            font-size: 16px;
+            color: #07074d;
+            outline: none;
+            resize: none;
+        }
+
+        .formbold-form-input::placeholder {
+            color: #536387;
+        }
+
+        .formbold-form-input:focus {
+            border-color: #6a64f1;
+            box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .formbold-form-label {
+        color: #07074d;
+        font-size: 16px;
+        line-height: 24px;
+        display: block;
+        margin-bottom: 10px;
+        font-weight: bold; /* Add this line to make the labels bolder */
+        font-family:  sans-serif; /* Replace 'Your Chosen Font' with the desired font family */
+    }
+
+        .formbold-btn { 
+            text-align: center;
+            width: 100%;
+            font-size: 16px;
+            border-radius: 5px;
+            padding: 14px 25px;
+            border: none;
+            font-weight: 500;
+            background-color: #6a64f1;
+            color: white;
+            cursor: pointer;
+            margin-top: 25px;
+        }
+
+        .formbold-btn:hover {
+            box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.05);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="formbold-main-wrapper">
+        <div class="formbold-form-wrapper">
+            <h1>Garment Workers Productivity Prediction</h1>
+            <img src="https://static.vecteezy.com/system/resources/previews/005/260/243/original/illustration-graphic-cartoon-character-of-business-analysis-vector.jpg" alt="Worker Productivity" style="width: 100%; max-height: 200px; object-fit:cover;margin-bottom: 30px;margin-top: 20px;">
+            <form action="/predict" method="post">
+                <div class="formbold-input-group">
+                    <label for="quarter" class="formbold-form-label">Quarter:</label>
+                    <input
+                        type="number"
+                        name="quarter"
+                        id="quarter"
+                        placeholder="Enter quarter"
+                        class="formbold-form-input"
+                        required
+                    />
+                </div>
+
+                <div class="formbold-input-group">
+                    <label for="department" class="formbold-form-label">Department:</label>
+                    <input
+                        type="number"
+                        name="department"
+                        id="department"
+                        placeholder="Enter department"
+                        class="formbold-form-input"
+                        required
+                    />
+                </div>
+
+                <div class="formbold-input-group">
+                    <label for="day" class="formbold-form-label">Day:</label>
+                    <input
+                        type="number"
+                        name="day"
+                        id="day"
+                        placeholder="Enter day"
+                        class="formbold-form-input"
+                        required
+                    />
+                </div>
+
+                <div class="formbold-input-group">
+                    <label for="team" class="formbold-form-label">Team:</label>
+                    <input
+                        type="number"
+                        name="team"
+                        id="team"
+                        placeholder="Enter team"
+                        class="formbold-form-input"
+                        required
+                    />
+                </div>
+
+                <div class="formbold-input-group">
+                    <label for="targeted_productivity" class="formbold-form-label">Targeted Productivity:</label>
+                    <input
+                        type="tel"
+                        name="targeted_productivity"
+                        id="targeted_productivity"
+                        step="0.01"
+                        placeholder="Enter targeted productivity"
+                        class="formbold-form-input"
+                        required
+                    />
+                </div>
+
+            <div class="formbold-input-group">
+                <label for="standard_minute_value" class="formbold-form-label">Standard Minute Value:</label>
+                <input
+                    type="tel"
+                    name="standard_minute_value"
+                    id="standard_minute_value"
+                    step="0.01"
+                    placeholder="Enter standard minute value"
+                    class="formbold-form-input"
+                    required
+                />
+            </div>
+
+            <div class="formbold-input-group">
+                <label for="work_in_progress" class="formbold-form-label">Work in Progress:</label>
+                <input
+                    type="tel"
+                    name="work_in_progress"
+                    id="work_in_progress"
+                    placeholder="Enter work in progress"
+                    class="formbold-form-input"
+                    required
+                />
+            </div>
+
+            <div class="formbold-input-group">
+                <label for="over_time" class="formbold-form-label">Over Time:</label>
+                <input
+                    type="tel"
+                    name="over_time"
+                    id="over_time"
+                    placeholder="Enter over time"
+                    class="formbold-form-input"
+                    required
+                />
+            </div>
+
+            <div class="formbold-input-group">
+                <label for="incentive" class="formbold-form-label">Incentive:</label>
+                <input
+                    type="tel"
+                    name="incentive"
+                    id="incentive"
+                    placeholder="Enter incentive"
+                    class="formbold-form-input"
+                    required
+                />
+            </div>
+
+            <div class="formbold-input-group">
+                <label for="idle_men" class="formbold-form-label">Idle Men:</label>
+                <input
+                    type="tel"
+                    name="idle_men"
+                    id="idle_men"
+                    placeholder="Enter idle men"
+                    class="formbold-form-input"
+                    required
+                />
+            </div>
+
+            <div class="formbold-input-group">
+                <label for="no_of_style_change" class="formbold-form-label">Number of Style Changes:</label>
+                <input
+                    type="tel"
+                    name="no_of_style_change"
+                    id="no_of_style_change"
+                    placeholder="Enter number of style changes"
+                    class="formbold-form-input"
+                    required
+                />
+            </div>
+
+            <div class="formbold-input-group">
+                <label for="no_of_workers" class="formbold-form-label">Number of Workers:</label>
+                <input
+                    type="tel"
+                    name="no_of_workers"
+                    id="no_of_workers"
+                    placeholder="Enter number of workers"
+                    class="formbold-form-input"
+                    required
+                />
+            </div>
+
+            <div>
+                <input type="submit" value="Predict" class="formbold-btn">
+            </div>
+        </form>
+    </div>
+</div>
